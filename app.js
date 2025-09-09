@@ -1,7 +1,10 @@
 const express = require("express");
+const app = express();
 const path =  require("path");
 
-const app = express();
+//Adding PORTS for
+const PORT = process.env.PORT;
+
 app.use("/tunneled-content", express.static(path.join(__dirname + "/public"))); //serving files from public folder
                                   // In that folder I can place everything for my website
 
@@ -23,8 +26,11 @@ app.use((req, res) => {
   const reqHeaders = JSON.stringify(req.headers)
   res.send("<body>"+reqHeaders+"</body>");
   */
+
 })
 
-app.listen(3000, () => {
-  console.log("App listening on port 3000");
+
+//Before docker, it used port 3000
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
 })
