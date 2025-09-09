@@ -12,12 +12,17 @@ app.get("/api", (req, res) => {
 app.use((req, res) => {
   //res.status(404);
   //res.send("<h1>Error 404: Resource Not found</h1>")
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(req.headers, null, 3));
 
-  //const reqHeaders = JSON.stringify(req.headers)
-  //res.type('json').send(JSON.stringify(reqHeaders, null, 2));
-  //res.send("<body>"+reqHeaders+"</body>");
+  //ESTE ES EL BUENO PERO NO CUMPLE CON SER EN EL <BODY>
+  res.setHeader('Content-Type', 'application/json');
+  //const jsonHeaders = JSON.stringify(req.headers);
+  res.json(req.headers)
+  //res.send(jsonHeaders);
+
+  /*
+  const reqHeaders = JSON.stringify(req.headers)
+  res.send("<body>"+reqHeaders+"</body>");
+  */
 })
 
 app.listen(3000, () => {
